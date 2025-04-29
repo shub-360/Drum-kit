@@ -1,6 +1,6 @@
 // Detecting Button pressed
 
-let numberOfDrumsButton = document.querySelectorAll(".drum").length;
+let numberOfDrumsButton = document.querySelectorAll(".drum").length;//.length: Gets the total number of elements with the class drum.
 
 for (let i = 0; i < numberOfDrumsButton; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function () {
@@ -8,12 +8,19 @@ for (let i = 0; i < numberOfDrumsButton; i++) {
 
     let buttonInnerHtml = this.innerHTML;
     makeSound(buttonInnerHtml);
+
+    // gnerate button aniation
+    buttonAnimation(buttonInnerHtml);
   });
 }
 
 // Detecting keyboard pressed
 document.addEventListener("keydown", function (event) {
+
   makeSound(event.key);
+  buttonAnimation(event.key);
+
+
 });
 
 function makeSound(key) {
@@ -63,4 +70,17 @@ function makeSound(key) {
       console.log("refresh it");
       break;
   }
+}
+
+// ANimation
+
+function buttonAnimation(currentKey){
+    var activeButton = document.querySelector("."+currentKey);
+    activeButton.classList.add("pressed");
+
+  setTimeout(function (){
+    activeButton.classList.remove("pressed");
+
+  }, 100);
+
 }
